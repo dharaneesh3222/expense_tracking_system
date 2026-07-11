@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker - Reports</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body>
+    <div class="mobile-topbar">
+        <a href="dashboard.html" class="brand" style="padding: 0;">
+            <div class="logo-icon"><i class="fa-solid fa-wallet"></i></div>
+            <span>FinTrack</span>
+        </a>
+        <button class="theme-toggle" id="themeToggleMobile" style="width: auto; padding: 0.5rem; border:none; background:transparent;"><i class="fa-solid fa-moon"></i></button>
+    </div>
+    <div class="mobile-nav">
+        <a href="dashboard.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        <a href="add.html"><i class="fa-solid fa-plus"></i> Add Transaction</a>
+        <a href="report.html" class="active"><i class="fa-solid fa-chart-bar"></i> Reports</a>
+        <a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a>
+        <a href="budget.html"><i class="fa-solid fa-bullseye"></i> Budgets</a>
+        <a href="goals.html"><i class="fa-solid fa-bullhorn"></i> Goals</a>
+        <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+    </div>
+
+    <aside class="sidebar">
+        <a href="dashboard.html" class="brand">
+            <div class="logo-icon"><i class="fa-solid fa-wallet"></i></div>
+            <span>FinTrack</span>
+        </a>
+        <div class="nav-links">
+            <a href="dashboard.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+            <a href="add.html"><i class="fa-solid fa-plus"></i> Add Transaction</a>
+            <a href="report.html" class="active"><i class="fa-solid fa-chart-bar"></i> Reports</a>
+            <a href="budget.html"><i class="fa-solid fa-bullseye"></i> Budgets</a>
+            <a href="goals.html"><i class="fa-solid fa-bullhorn"></i> Goals</a>
+            <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+            <a href="profile.html"><i class="fa-solid fa-user"></i> My Profile</a>
+        </div>
+        <div class="sidebar-bottom">
+            <div id="userProfile" style="margin-bottom: 1rem; color: var(--text-primary); font-weight: 700; display: flex; align-items: center; gap: 0.5rem; justify-content: center;">
+                <i class="fa-solid fa-user-circle" style="font-size: 1.5rem; color: var(--primary-color);"></i> <span id="userNameDisplay">User</span>
+            </div>
+            <button class="theme-toggle" id="themeToggle" style="margin-bottom: 0.5rem;">
+                <i class="fa-solid fa-moon"></i> <span>Dark Mode</span>
+            </button>
+            <button onclick="window.api.logoutUser()" class="theme-toggle" style="color: var(--danger-color); border-color: transparent;">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="page-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+            <h1 class="page-title">Analytics & Reports</h1>
+            <div style="display: flex; gap: 1rem;">
+                <button id="exportMonthlyPdf" class="btn btn-primary" style="padding: 0.75rem 1.5rem;"><i class="fa-solid fa-file-pdf"></i> Monthly PDF</button>
+                <button id="exportYearlyPdf" class="btn btn-outline" style="padding: 0.75rem 1.5rem; border-color: var(--primary-color); color: var(--primary-color); background: transparent;"><i class="fa-solid fa-file-pdf"></i> Yearly PDF</button>
+            </div>
+        </header>
+
+        <div class="stat-grid" style="margin-bottom: 2rem;">
+            <div class="card" style="padding: 1.5rem;">
+                <h3 style="color: var(--text-secondary); font-size: 0.875rem; text-transform: uppercase;">Avg Daily Expense</h3>
+                <h2 id="avgDailyExpense" style="font-size: 1.5rem; margin-top: 0.5rem;">₹0.00</h2>
+            </div>
+            <div class="card" style="padding: 1.5rem;">
+                <h3 style="color: var(--text-secondary); font-size: 0.875rem; text-transform: uppercase;">Highest Expense</h3>
+                <h2 id="highestExpense" style="font-size: 1.5rem; margin-top: 0.5rem; color: var(--danger-color);">₹0.00</h2>
+            </div>
+            <div class="card" style="padding: 1.5rem;">
+                <h3 style="color: var(--text-secondary); font-size: 0.875rem; text-transform: uppercase;">Total Transactions</h3>
+                <h2 id="totalTxCount" style="font-size: 1.5rem; margin-top: 0.5rem; color: var(--primary-color);">0</h2>
+            </div>
+        </div>
+        
+        <div class="charts-grid" id="reportContentToExport">
+            <div class="card">
+                <h3 style="margin-bottom: 1rem; color: var(--text-secondary); font-size: 1.1rem;">Expenses by Category</h3>
+                <div class="chart-container">
+                    <canvas id="categoryPieChart"></canvas>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3 style="margin-bottom: 1rem; color: var(--text-secondary); font-size: 1.1rem;">Monthly Income vs Expenses</h3>
+                <div class="chart-container">
+                    <canvas id="monthlyBarChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top: 2rem;">
+            <h3 style="margin-bottom: 1rem; color: var(--text-secondary); font-size: 1.1rem;"><i class="fa-solid fa-chart-line" style="margin-right: 0.5rem; color: var(--primary-color);"></i>Cash Flow Trend (Daily Net Balance)</h3>
+            <div class="chart-container" style="height: 400px; width: 100%;">
+                <canvas id="trendLineChart"></canvas>
+            </div>
+        </div>
+    </main>
+
+    <!-- Hidden container used for generating PDF reports -->
+    <div id="pdfExportContainer" style="display: none;"></div>
+
+    <script src="js/api.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/report.js"></script>
+</body>
+</html>

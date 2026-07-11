@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker - Settings</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="mobile-topbar">
+        <a href="dashboard.html" class="brand" style="padding: 0;">
+            <div class="logo-icon"><i class="fa-solid fa-wallet"></i></div>
+            <span>FinTrack</span>
+        </a>
+        <button class="theme-toggle" id="themeToggleMobile" style="width: auto; padding: 0.5rem; border:none; background:transparent;"><i class="fa-solid fa-moon"></i></button>
+    </div>
+    <div class="mobile-nav">
+        <a href="dashboard.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        <a href="add.html"><i class="fa-solid fa-plus"></i> Add Transaction</a>
+        <a href="report.html"><i class="fa-solid fa-chart-bar"></i> Reports</a>
+        <a href="budget.html"><i class="fa-solid fa-bullseye"></i> Budgets</a>
+        <a href="goals.html"><i class="fa-solid fa-bullhorn"></i> Goals</a>
+        <a href="settings.html" class="active"><i class="fa-solid fa-gear"></i> Settings</a>
+        <a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a>
+    </div>
+
+    <aside class="sidebar">
+        <a href="dashboard.html" class="brand">
+            <div class="logo-icon"><i class="fa-solid fa-wallet"></i></div>
+            <span>FinTrack</span>
+        </a>
+        <div class="nav-links">
+            <a href="dashboard.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+            <a href="add.html"><i class="fa-solid fa-plus"></i> Add Transaction</a>
+            <a href="report.html"><i class="fa-solid fa-chart-bar"></i> Reports</a>
+            <a href="budget.html"><i class="fa-solid fa-bullseye"></i> Budgets</a>
+            <a href="goals.html"><i class="fa-solid fa-bullhorn"></i> Goals</a>
+            <a href="settings.html" class="active"><i class="fa-solid fa-gear"></i> Settings</a>
+            <a href="profile.html"><i class="fa-solid fa-user"></i> My Profile</a>
+        </div>
+        <div class="sidebar-bottom">
+            <div id="userProfile" style="margin-bottom: 1rem; color: var(--text-primary); font-weight: 700; display: flex; align-items: center; gap: 0.5rem; justify-content: center;">
+                <i class="fa-solid fa-user-circle" style="font-size: 1.5rem; color: var(--primary-color);"></i> <span id="userNameDisplay">User</span>
+            </div>
+            <button class="theme-toggle" id="themeToggle" style="margin-bottom: 0.5rem;">
+                <i class="fa-solid fa-moon"></i> <span>Dark Mode</span>
+            </button>
+            <button onclick="window.api.logoutUser()" class="theme-toggle" style="color: var(--danger-color); border-color: transparent;">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="page-header">
+            <h1 class="page-title">Application Settings</h1>
+        </header>
+
+        <div class="card" style="max-width: 600px;">
+            <h2 style="margin-bottom: 1.5rem; font-size: 1.25rem;">Preferences</h2>
+            
+            <form id="settingsForm">
+                <div class="form-group">
+                    <label>Default Currency</label>
+                    <select id="currencySelect" class="form-control">
+                        <option value="₹">Indian Rupee (₹)</option>
+                        <option value="$">US Dollar ($)</option>
+                        <option value="€">Euro (€)</option>
+                        <option value="£">British Pound (£)</option>
+                        <option value="¥">Japanese Yen (¥)</option>
+                        <option value="A$">Australian Dollar (A$)</option>
+                        <option value="C$">Canadian Dollar (C$)</option>
+                    </select>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 0.5rem;">This will change the currency symbol displayed across the entire app. It does not convert existing transaction amounts.</p>
+                </div>
+
+                <div class="form-group" style="margin-top: 2rem;">
+                    <button type="submit" id="saveSettingsBtn" class="btn btn-primary"><i class="fa-solid fa-save"></i> Save Settings</button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/settings.js"></script>
+</body>
+</html>

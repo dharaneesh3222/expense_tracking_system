@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker - Budgets</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="mobile-topbar">
+        <a href="dashboard.html" class="brand" style="padding: 0;">
+            <div class="logo-icon"><i class="fa-solid fa-wallet"></i></div>
+            <span>FinTrack</span>
+        </a>
+        <button class="theme-toggle" id="themeToggleMobile" style="width: auto; padding: 0.5rem; border:none; background:transparent;"><i class="fa-solid fa-moon"></i></button>
+    </div>
+    <div class="mobile-nav">
+        <a href="dashboard.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        <a href="add.html"><i class="fa-solid fa-plus"></i> Add Transaction</a>
+        <a href="report.html"><i class="fa-solid fa-chart-bar"></i> Reports</a>
+        <a href="budget.html" class="active"><i class="fa-solid fa-bullseye"></i> Budgets</a>
+        <a href="goals.html"><i class="fa-solid fa-bullhorn"></i> Goals</a>
+        <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+        <a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a>
+    </div>
+
+    <aside class="sidebar">
+        <a href="dashboard.html" class="brand">
+            <div class="logo-icon"><i class="fa-solid fa-wallet"></i></div>
+            <span>FinTrack</span>
+        </a>
+        <div class="nav-links">
+            <a href="dashboard.html"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+            <a href="add.html"><i class="fa-solid fa-plus"></i> Add Transaction</a>
+            <a href="report.html"><i class="fa-solid fa-chart-bar"></i> Reports</a>
+            <a href="budget.html" class="active"><i class="fa-solid fa-bullseye"></i> Budgets</a>
+            <a href="goals.html"><i class="fa-solid fa-bullhorn"></i> Goals</a>
+            <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+            <a href="profile.html"><i class="fa-solid fa-user"></i> My Profile</a>
+        </div>
+        <div class="sidebar-bottom">
+            <div id="userProfile" style="margin-bottom: 1rem; color: var(--text-primary); font-weight: 700; display: flex; align-items: center; gap: 0.5rem; justify-content: center;">
+                <i class="fa-solid fa-user-circle" style="font-size: 1.5rem; color: var(--primary-color);"></i> <span id="userNameDisplay">User</span>
+            </div>
+            <button class="theme-toggle" id="themeToggle" style="margin-bottom: 0.5rem;">
+                <i class="fa-solid fa-moon"></i> <span>Dark Mode</span>
+            </button>
+            <button onclick="window.api.logoutUser()" class="theme-toggle" style="color: var(--danger-color); border-color: transparent;">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="page-header" style="display: flex; justify-content: space-between; align-items: center;">
+            <h1 class="page-title">Category Budgets</h1>
+            <button id="saveBudgetsBtn" class="btn btn-primary"><i class="fa-solid fa-save"></i> Save Changes</button>
+        </header>
+
+        <p style="color: var(--text-secondary); margin-bottom: 2rem;">Set monthly limits for specific categories. We'll track your expenses against these limits.</p>
+
+        <div class="card" style="margin-bottom: 2rem;">
+            <h3 style="margin-bottom: 1.5rem;">Overall Monthly Budget Limit</h3>
+            <div style="display: flex; gap: 1rem; align-items: center;">
+                <div class="form-group" style="margin: 0; flex: 1;">
+                    <input type="number" id="overallBudgetInput" class="form-control" placeholder="e.g. 5000">
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 style="margin-bottom: 1.5rem;">Category Limits</h3>
+            <div id="categoryBudgetsContainer" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <!-- Rendered by budget.js -->
+            </div>
+        </div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/budget.js"></script>
+</body>
+</html>

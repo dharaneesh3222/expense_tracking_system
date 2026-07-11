@@ -1,0 +1,147 @@
+[
+  {
+    "id": "1776060645792",
+    "amount": 4000,
+    "type": "income",
+    "category": "Salary",
+    "date": "2026-04-01",
+    "note": "Salary"
+  },
+  {
+    "id": "1776060890022",
+    "amount": 20,
+    "type": "expense",
+    "category": "Food",
+    "date": "2026-04-13",
+    "note": "lunch"
+  },
+  {
+    "id": "1776060915774",
+    "amount": 450,
+    "type": "expense",
+    "category": "Travel",
+    "date": "2026-04-07",
+    "note": "bus travel"
+  },
+  {
+    "id": "1776061025858",
+    "amount": 600,
+    "type": "expense",
+    "category": "Shopping",
+    "date": "2026-03-31",
+    "note": "bought a watch"
+  },
+  {
+    "id": "1776061083320",
+    "amount": 2000,
+    "type": "income",
+    "category": "Other Income",
+    "date": "2026-03-18",
+    "note": "advance"
+  },
+  {
+    "id": "1776062564709",
+    "amount": 10000,
+    "type": "income",
+    "category": "Salary",
+    "date": "2026-04-05",
+    "note": "bounce "
+  },
+  {
+    "id": "1776062779668",
+    "amount": 4000,
+    "type": "expense",
+    "category": "Online Shopping",
+    "date": "2026-04-12",
+    "note": "bought a earbuds "
+  },
+  {
+    "id": "1776063816402",
+    "amount": 200,
+    "type": "expense",
+    "category": "UPI Payment",
+    "date": "2026-04-13",
+    "note": "for shopping"
+  },
+  {
+    "id": "1778164623738",
+    "userId": "1778164459097",
+    "amount": 40000,
+    "type": "income",
+    "category": "Salary",
+    "date": "2026-05-01",
+    "note": "Salary"
+  },
+  {
+    "id": "1778164688617",
+    "userId": "1778164459097",
+    "amount": 4500,
+    "type": "expense",
+    "category": "Travel",
+    "date": "2026-05-28",
+    "note": "bus travel"
+  },
+  {
+    "id": "1778165603887",
+    "userId": "1778164459097",
+    "amount": 3000,
+    "type": "expense",
+    "category": "Shopping",
+    "date": "2026-05-11",
+    "note": "bought a watch"
+  },
+  {
+    "id": "1778166509626",
+    "userId": "1778164459097",
+    "amount": 12370,
+    "type": "expense",
+    "category": "Food",
+    "date": "2026-05-31",
+    "note": "daily food"
+  },
+  {
+    "id": "1778166564839",
+    "userId": "1778164459097",
+    "amount": 3600,
+    "type": "expense",
+    "category": "Bills",
+    "date": "2026-05-15",
+    "note": "current bill"
+  },
+  {
+    "id": "1778168352185",
+    "userId": "1778164459097",
+    "amount": 5000,
+    "type": "income",
+    "category": "Other Income",
+    "date": "2026-05-10",
+    "note": "Vatti"
+  },
+  {
+    "id": "1778168461080",
+    "userId": "1778164459097",
+    "amount": 8000,
+    "type": "expense",
+    "category": "Online Shopping",
+    "date": "2026-05-12",
+    "note": "bought groceries "
+  },
+  {
+    "id": "1778168534781",
+    "userId": "1778164459097",
+    "amount": 2800,
+    "type": "expense",
+    "category": "UPI Payment",
+    "date": "2026-05-21",
+    "note": "bought a shoe"
+  },
+  {
+    "id": "1778168683189",
+    "userId": "1778164459097",
+    "amount": 25000,
+    "type": "income",
+    "category": "Salary",
+    "date": "2026-04-01",
+    "note": "Salary"
+  }
+]

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="mobile-topbar">
+        <a href="dashboard.html" class="brand" style="padding: 0;">
+            <div class="logo-icon"><i class="fa-solid fa-wallet"></i></div>
+            <span>FinTrack</span>
+        </a>
+        <button class="theme-toggle" id="themeToggleMobile" style="width: auto; padding: 0.5rem; border:none; background:transparent;"><i class="fa-solid fa-moon"></i></button>
+    </div>
+    <div class="mobile-nav">
+        <a href="dashboard.html" class="active"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+        <a href="add.html"><i class="fa-solid fa-plus"></i> Add Transaction</a>
+        <a href="report.html"><i class="fa-solid fa-chart-bar"></i> Reports</a>
+        <a href="profile.html"><i class="fa-solid fa-user"></i> Profile</a>
+        <a href="budget.html"><i class="fa-solid fa-bullseye"></i> Budgets</a>
+        <a href="goals.html"><i class="fa-solid fa-bullhorn"></i> Goals</a>
+        <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+    </div>
+
+    <aside class="sidebar">
+        <a href="dashboard.html" class="brand">
+            <div class="logo-icon"><i class="fa-solid fa-wallet"></i></div>
+            <span>FinTrack</span>
+        </a>
+        <div class="nav-links">
+            <a href="dashboard.html" class="active"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+            <a href="add.html"><i class="fa-solid fa-plus"></i> Add Transaction</a>
+            <a href="report.html"><i class="fa-solid fa-chart-bar"></i> Reports</a>
+            <a href="budget.html"><i class="fa-solid fa-bullseye"></i> Budgets</a>
+            <a href="goals.html"><i class="fa-solid fa-bullhorn"></i> Goals</a>
+            <a href="settings.html"><i class="fa-solid fa-gear"></i> Settings</a>
+            <a href="profile.html"><i class="fa-solid fa-user"></i> My Profile</a>
+        </div>
+        <div class="sidebar-bottom">
+            <div id="userProfile" style="margin-bottom: 1rem; color: var(--text-primary); font-weight: 700; display: flex; align-items: center; gap: 0.5rem; justify-content: center;">
+                <i class="fa-solid fa-user-circle" style="font-size: 1.5rem; color: var(--primary-color);"></i> <span id="userNameDisplay">User</span>
+            </div>
+            <button class="theme-toggle" id="themeToggle" style="margin-bottom: 0.5rem;">
+                <i class="fa-solid fa-moon"></i> <span>Dark Mode</span>
+            </button>
+            <button onclick="window.api.logoutUser()" class="theme-toggle" style="color: var(--danger-color); border-color: transparent;">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <header class="page-header">
+            <h1 class="page-title">Overview</h1>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Left: Summaries -->
+            <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <div class="card balance-card">
+                    <h3>Total Balance</h3>
+                    <h2 id="totalBalance">₹0.00</h2>
+                </div>
+                
+                <div class="stat-grid">
+                    <div class="stat-card-sm">
+                        <div class="stat-icon income"><i class="fa-solid fa-arrow-trend-up"></i></div>
+                        <div class="stat-details">
+                            <span>Income</span>
+                            <h4 id="totalIncome" style="color: var(--income-color)">₹0.00</h4>
+                        </div>
+                    </div>
+                    <div class="stat-card-sm">
+                        <div class="stat-icon expense"><i class="fa-solid fa-arrow-trend-down"></i></div>
+                        <div class="stat-details">
+                            <span>Expense</span>
+                            <h4 id="totalExpense" style="color: var(--danger-color)">₹0.00</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="add.html" class="btn btn-primary"><i class="fa-solid fa-plus"></i> New Transaction</a>
+
+                <div class="card">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                        <h3 style="color: var(--text-secondary); font-size: 1.1rem; font-weight: 600;"><i class="fa-solid fa-bullseye" style="color: var(--primary-color); margin-right: 0.5rem;"></i>Monthly Budget</h3>
+                        <button id="editBudgetBtn" class="btn-icon" title="Edit Budget"><i class="fa-solid fa-pen"></i></button>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-size: 0.875rem;">
+                        <span style="font-weight: 600; color: var(--text-primary);" id="budgetSpent">₹0</span>
+                        <span style="color: var(--text-secondary);" id="budgetTotal">/ ₹5000</span>
+                    </div>
+                    <div class="progress-bar-bg" style="height: 12px; background: var(--bg-color); border-radius: 6px;">
+                        <div id="budgetProgressFill" class="progress-bar-fill" style="width: 0%; height: 100%; border-radius: 6px; background: var(--income-color);"></div>
+                    </div>
+                    <p id="budgetStatusText" style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--text-secondary); text-align: right;">0% used</p>
+                </div>
+
+                <div class="card">
+                    <h3 style="color: var(--text-secondary); font-size: 1.1rem; font-weight: 600; margin-bottom: 1.5rem;"><i class="fa-solid fa-fire" style="color: #f59e0b; margin-right: 0.5rem;"></i>Top Expenses</h3>
+                    <div id="topSpendsContainer">
+                        <!-- Rendered by dashboard.js -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Transaction List -->
+            <div class="card" style="overflow-x: hidden;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+                    <h2>Recent Transactions</h2>
+                    <button id="exportCsvBtn" class="btn btn-outline" style="padding: 0.5rem 1rem;"><i class="fa-solid fa-download"></i> Export CSV</button>
+                </div>
+
+                <div class="filters">
+                    <select id="filterType" class="form-control" style="flex: 1; min-width: 120px;">
+                        <option value="all">All Types</option>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                    <select id="filterCategory" class="form-control" style="flex: 1; min-width: 150px;">
+                        <option value="all">All Categories</option>
+                        <option value="Food">Food</option>
+                        <option value="Travel">Travel</option>
+                        <option value="Bills">Bills</option>
+                        <option value="Shopping">Shopping</option>
+                        <option value="Online Shopping">Online Shopping</option>
+                        <option value="UPI Payment">UPI Payment</option>
+                        <option value="Salary">Salary</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <input type="month" id="filterDate" class="form-control" style="flex: 1; min-width: 150px;">
+                    <button id="resetFilters" class="btn btn-outline" title="Reset Filters"><i class="fa-solid fa-rotate-right"></i></button>
+                </div>
+
+                <div class="table-container" style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Note</th>
+                                <th>Amount</th>
+                                <th>Type</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionList">
+                            <!-- Rendered dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="noDataMsg" style="display: none; text-align: center; padding: 3rem 1rem; color: var(--text-secondary);">
+                    <i class="fa-solid fa-ghost" style="font-size: 3rem; opacity: 0.2; margin-bottom: 1rem; display: block;"></i>
+                    No transactions found.
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/api.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
