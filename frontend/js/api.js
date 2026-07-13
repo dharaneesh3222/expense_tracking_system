@@ -96,6 +96,10 @@ const addTransaction = async (data) => {
             body: JSON.stringify(data)
         });
         if (response.status === 401) return logoutUser();
+        if (!response.ok) {
+            const err = await response.json();
+            throw new Error(err.error || `Server error: ${response.status}`);
+        }
         return await response.json();
     } catch (error) {
         console.error('Error adding transaction:', error);
@@ -111,6 +115,10 @@ const editTransaction = async (id, data) => {
             body: JSON.stringify(data)
         });
         if (response.status === 401) return logoutUser();
+        if (!response.ok) {
+            const err = await response.json();
+            throw new Error(err.error || `Server error: ${response.status}`);
+        }
         return await response.json();
     } catch (error) {
         console.error('Error editing transaction:', error);
