@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     window.editTr = (id) => {
-        window.location.href = `/add?edit=${id}`;
+        window.location.href = `add.html?edit=${id}`;
     };
 
     // CSV Export
