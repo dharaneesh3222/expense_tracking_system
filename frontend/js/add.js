@@ -131,7 +131,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             } else {
                 await window.api.addTransaction(data);
             }
-            window.location.href = 'index.html';
+            window.location.href = 'dashboard.html';
         } catch (error) {
             alert('Failed to save transaction');
             btnSubmit.disabled = false;
