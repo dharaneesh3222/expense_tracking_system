@@ -133,9 +133,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
             window.location.href = 'dashboard.html';
         } catch (error) {
-            alert('Failed to save transaction');
+            alert('Failed to save transaction: ' + error.message);
             btnSubmit.disabled = false;
-            btnSubmit.innerText = 'Save Transaction';
+            btnSubmit.innerHTML = '<i class="fa-solid fa-save"></i> Save Transaction';
         }
     });
 });

@@ -356,6 +356,22 @@ app.delete('/api/transactions/:id', async (req, res) => {
     }
 });
 
+// POST log error
+app.post('/api/logs', async (req, res) => {
+    try {
+        const { message, stack, user } = req.body;
+        await db.collection('frontend_logs').add({
+            message: message || 'Unknown error',
+            stack: stack || '',
+            user: user || 'Anonymous',
+            createdAt: FieldValue.serverTimestamp()
+        });
+        res.status(200).json({ success: true });
+    } catch (e) {
+        res.status(500).json({ error: 'Failed to log' });
+    }
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
 });

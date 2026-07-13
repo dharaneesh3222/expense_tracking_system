@@ -29,6 +29,17 @@ const getHeaders = () => {
     return headers;
 };
 
+const logErrorToServer = async (errorMsg, stack) => {
+    try {
+        const user = JSON.parse(localStorage.getItem('user'));
+        await fetch(`${API_URL}/logs`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: String(errorMsg), stack: String(stack), user: user ? user.id : 'Anon' })
+        });
+    } catch (e) {}
+};
+
 // User Endpoints
 const registerUser = async (email, password) => {
     const response = await fetch(`${API_URL}/register`, {
@@ -97,12 +108,13 @@ const addTransaction = async (data) => {
         });
         if (response.status === 401) return logoutUser();
         if (!response.ok) {
-            const err = await response.json();
+            const err = await response.json().catch(() => ({ error: 'Invalid JSON response' }));
             throw new Error(err.error || `Server error: ${response.status}`);
         }
         return await response.json();
     } catch (error) {
         console.error('Error adding transaction:', error);
+        await logErrorToServer(error.message, error.stack);
         throw error;
     }
 };
