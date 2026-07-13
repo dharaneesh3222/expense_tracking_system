@@ -40,6 +40,11 @@ const logErrorToServer = async (errorMsg, stack) => {
     } catch (e) {}
 };
 
+window.onerror = function(msg, url, lineNo, columnNo, error) {
+    logErrorToServer(`Global: ${msg}`, `File: ${url}, Line: ${lineNo}:${columnNo}\n${error ? error.stack : ''}`);
+    return false;
+};
+
 // User Endpoints
 const registerUser = async (email, password) => {
     const response = await fetch(`${API_URL}/register`, {
